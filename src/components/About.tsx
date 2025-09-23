@@ -109,19 +109,6 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
             
-            {/* Floating Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground px-6 py-4 rounded-xl shadow-accent font-semibold"
-            >
-              <div className="text-center">
-                <div className="text-2xl font-bold">20+</div>
-                <div className="text-sm">Years of Excellence</div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
 
