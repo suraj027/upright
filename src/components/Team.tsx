@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Award, BookOpen, TrendingUp, User, LinkedinIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import drHiteshImage from "@/assets/dr-hitesh-patel.jpg";
-import kishoreImage from "@/assets/kishore-gidwani.jpg";
+import drHiteshImage from "@/assets/placeholder-male-professional.png";
+import kishoreImage from "@/assets/placeholder-male-professional-2.png";
 
 const Team = () => {
   const teamMembers = [
