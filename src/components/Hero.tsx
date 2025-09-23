@@ -117,7 +117,7 @@ const Hero = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="hidden lg:flex justify-center items-center"
           >
-            <div className="relative">
+            <div className="flex gap-6 items-center">
               {/* Floating Cards Animation */}
               <motion.div
                 animate={{ y: [0, -20, 0] }}
@@ -134,7 +134,7 @@ const Hero = () => {
               <motion.div
                 animate={{ y: [0, 20, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 2 }}
-                className="bg-white/20 backdrop-blur-md rounded-2xl p-6 border border-white/30 shadow-2xl mt-6 ml-8"
+                className="bg-white/20 backdrop-blur-md rounded-2xl p-6 border border-white/30 shadow-2xl"
               >
                 <div className="text-center">
                   <Shield className="h-12 w-12 text-accent-light mx-auto mb-2" />
