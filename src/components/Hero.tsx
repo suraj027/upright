@@ -25,7 +25,7 @@ const Hero = () => {
     <section 
       id="home" 
       className={`min-h-screen flex items-start lg:items-center justify-center relative overflow-hidden bg-white ${
-        isHighZoom ? "pt-36 pb-10" : "pt-32 lg:pt-0"
+        isHighZoom ? "pt-44 pb-12" : "pt-36"
       }`}
     >
       <div className="container mx-auto px-4 relative z-10">
