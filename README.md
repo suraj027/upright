@@ -1,73 +1,72 @@
-# Welcome to your Lovable project
+# Upright Investor Services LLP
 
-## Project info
+Modern landing site for Upright Investor Services LLP, built with React, Vite, and Tailwind CSS. The experience highlights key offerings, leadership, publications, and a contact CTA with polished motion effects and accessibility-minded zoom behaviours.
 
-**URL**: https://lovable.dev/projects/f1323063-ecdc-4f75-8944-6792750103b4
+## ✨ Highlights
+- Responsive hero, services, publications, and contact sections with Framer Motion animations.
+- Shadcn/ui component system with Radix primitives for consistent styling and a11y.
+- High-zoom handling that automatically collapses navigation and adjusts typography for improved readability at ≥125 % and ≥150 % zoom (Safari, Chrome, Edge tested).
+- Smooth in-page navigation with scroll snapping and section highlighting.
 
-## How can I edit this code?
+## 🛠️ Tech Stack
+- **Framework**: React 18 + Vite 5
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui
+- **Animation**: Framer Motion
+- **Data/Forms**: React Hook Form, Zod, @tanstack/react-query (ready for API integration)
 
-There are several ways of editing your application.
+## 🚀 Getting Started
 
-**Use Lovable**
+### Prerequisites
+- Node.js ≥ 18
+- npm (bundled with Node). Bun is optional; npm is assumed in the commands below.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f1323063-ecdc-4f75-8944-6792750103b4) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Installation
+```bash
+git clone https://github.com/suraj027/upright-growth-guide.git
+cd upright-growth-guide
+npm install
 ```
 
-**Edit a file directly in GitHub**
+### Local Development
+```bash
+npm run dev
+```
+The Vite dev server prints a local URL (default `http://localhost:5173`).
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Production Build
+```bash
+npm run build
+```
+Outputs static assets in `dist/`. Use `npm run preview` for a local production preview.
 
-**Use GitHub Codespaces**
+### Additional Scripts
+- `npm run build:dev` – Development-mode build used for quick validation.
+- `npm run lint` – Run ESLint across the project.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## ♿ Zoom & Accessibility Notes
+- **Navigation**: Collapses to a hamburger menu when desktop zoom reaches ~125 % (with Safari-specific baselines) to keep the logo and tabs uncluttered.
+- **Typography & Layout**: Key sections (Hero, About, Services) respond to the `zoom-high` class (≥150 %) to reduce overlap and tighten spacing.
+- **No Favicon**: The site intentionally omits a favicon so browsers display a neutral tab icon.
 
-## What technologies are used for this project?
+## 📁 Key Project Structure
+```
+src/
+	components/        # Section components and shadcn/ui wrappers
+	hooks/             # Custom hooks (e.g., high zoom detection, mobile detection)
+	pages/             # Route-level React components
+	assets/            # Images used across sections
+```
 
-This project is built with:
+## 🌐 Deployment
+Any static hosting solution works. For Vercel/Netlify:
+1. Set build command to `npm run build`.
+2. Set output directory to `dist`.
+3. Ensure environment uses Node 18+.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🤝 Contributing
+Issues and PRs are welcome. Please run `npm run lint` and `npm run build` before submitting changes to keep the CI pipeline healthy.
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/f1323063-ecdc-4f75-8944-6792750103b4) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Maintained with care for Upright Investor Services LLP. Adjust styles and content in `src/components/*` to match future branding or offerings.
