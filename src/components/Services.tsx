@@ -69,7 +69,7 @@ const Services = () => {
   return (
     <section
       id="services"
-      className={`bg-gray-50 ${isHighZoom ? "py-20" : "py-24"}`}
+      className={`bg-muted/40 dark:bg-background transition-colors ${isHighZoom ? "py-20" : "py-24"}`}
     >
       <div className="container mx-auto px-4">
         {/* Section Header */}
@@ -83,14 +83,14 @@ const Services = () => {
           <h2
             className={`${
               isHighZoom ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl"
-            } font-bold mb-4 text-gray-800`}
+            } font-bold mb-4 text-foreground`}
           >
             Our Services
           </h2>
           <p
             className={`${
               isHighZoom ? "text-base" : "text-lg"
-            } text-gray-600 max-w-3xl mx-auto leading-relaxed`}
+            } text-muted-foreground max-w-3xl mx-auto leading-relaxed`}
           >
             Comprehensive financial solutions designed to help you achieve your investment goals 
             and secure your family's future with expert guidance.
@@ -118,19 +118,19 @@ const Services = () => {
                   <div className="bg-primary text-primary-foreground w-14 h-14 rounded-full flex items-center justify-center">
                     <service.icon className={isHighZoom ? "h-6 w-6" : "h-7 w-7"} />
                   </div>
-                  <CardTitle className={`${isHighZoom ? "text-xl" : "text-2xl"} font-bold text-gray-800`}>
+                  <CardTitle className={`${isHighZoom ? "text-xl" : "text-2xl"} font-bold text-foreground`}>
                     {service.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className={`${isHighZoom ? "text-base" : "text-lg"} text-gray-600 mb-6`}>
+                  <p className={`${isHighZoom ? "text-base" : "text-lg"} text-muted-foreground mb-6`}>
                     {service.description}
                   </p>
                   <ul className="space-y-3">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-center">
                         <CheckCircle className={`${isHighZoom ? "h-4 w-4" : "h-5 w-5"} text-green-500 mr-3 flex-shrink-0`} />
-                        <span className={`${isHighZoom ? "text-sm" : "text-base"} text-gray-700`}>{feature}</span>
+                        <span className={`${isHighZoom ? "text-sm" : "text-base"} text-foreground`}>{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -155,10 +155,10 @@ const Services = () => {
           transition={{ staggerChildren: 0.2 }}
         >
           <div className="text-center mb-12">
-            <h3 className={`${isHighZoom ? "text-2xl" : "text-3xl"} font-bold text-gray-800 mb-3`}>
+            <h3 className={`${isHighZoom ? "text-2xl" : "text-3xl"} font-bold text-foreground mb-3`}>
               Why Choose Us?
             </h3>
-            <p className={`${isHighZoom ? "text-base" : "text-lg"} text-gray-600 max-w-2xl mx-auto`}>
+            <p className={`${isHighZoom ? "text-base" : "text-lg"} text-muted-foreground max-w-2xl mx-auto`}>
               Our commitment to excellence, regulatory compliance, and a client-first approach makes us 
               the trusted choice for your financial journey.
             </p>
@@ -178,17 +178,17 @@ const Services = () => {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                className={`bg-white rounded-lg shadow-md text-center ${
+                className={`bg-card text-card-foreground rounded-lg shadow-md text-center ${
                   isHighZoom ? "p-5" : "p-6"
                 }`}
               >
-                <div className="bg-primary/10 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="bg-primary/15 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <item.icon className={isHighZoom ? "h-6 w-6" : "h-8 w-8"} />
                 </div>
-                <h4 className={`${isHighZoom ? "text-base" : "text-lg"} font-semibold text-gray-800 mb-2`}>
+                <h4 className={`${isHighZoom ? "text-base" : "text-lg"} font-semibold text-foreground mb-2`}>
                   {item.title}
                 </h4>
-                <p className={`${isHighZoom ? "text-sm" : "text-base"} text-gray-500`}>
+                <p className={`${isHighZoom ? "text-sm" : "text-base"} text-muted-foreground`}>
                   {item.description}
                 </p>
               </motion.div>

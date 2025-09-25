@@ -56,7 +56,7 @@ const Publications = () => {
   ];
 
   return (
-    <section id="publications" className="py-24 bg-gray-50">
+    <section id="publications" className="py-24 bg-muted/40 dark:bg-background transition-colors">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -66,10 +66,10 @@ const Publications = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
             Publications & Recognition
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Our team's expertise is recognized through published works, media features, 
             and active thought leadership in the investment community.
           </p>
@@ -88,25 +88,25 @@ const Publications = () => {
               <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <CardHeader>
                   <div className="flex items-center gap-4 mb-2">
-                    <div className="bg-primary/10 text-primary w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="bg-primary/15 text-primary w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                       <pub.icon className="h-6 w-6" />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-primary">{pub.type}</p>
-                      <CardTitle className="text-xl font-bold text-gray-800">{pub.title}</CardTitle>
+                      <CardTitle className="text-xl font-bold text-foreground">{pub.title}</CardTitle>
                     </div>
                   </div>
-                  <p className="text-sm text-gray-500 italic">"{pub.subtitle}" by {pub.author}</p>
+                  <p className="text-sm text-muted-foreground italic">"{pub.subtitle}" by {pub.author}</p>
                 </CardHeader>
                 <CardContent className="flex-grow flex flex-col">
-                  <p className="text-gray-600 mb-6 text-sm flex-grow">
+                  <p className="text-muted-foreground mb-6 text-sm flex-grow">
                     {pub.description}
                   </p>
                   <ul className="space-y-2 mb-6">
                     {pub.highlights.map((highlight) => (
                       <li key={highlight} className="flex items-center text-sm">
                         <Star className="h-4 w-4 text-yellow-500 mr-3 flex-shrink-0" />
-                        <span className="text-gray-700">{highlight}</span>
+                        <span className="text-muted-foreground">{highlight}</span>
                       </li>
                     ))}
                   </ul>

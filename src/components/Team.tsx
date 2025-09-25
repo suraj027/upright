@@ -60,7 +60,7 @@ const Team = () => {
   ];
 
   return (
-    <section id="team" className="py-24 bg-white">
+    <section id="team" className="py-24 bg-background transition-colors">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -70,10 +70,10 @@ const Team = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
             Our Leadership Team
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Meet the experienced professionals who guide Upright Investor Services with decades 
             of combined expertise in investments and financial planning.
           </p>
@@ -110,26 +110,26 @@ const Team = () => {
               >
                 <div className="mb-5">
                   <h3 className="text-3xl font-bold text-primary mb-1">{member.name}</h3>
-                  <p className="text-xl text-gray-700 font-semibold">{member.role}</p>
+                  <p className="text-xl text-muted-foreground font-semibold">{member.role}</p>
                 </div>
-                <p className="text-gray-600 leading-relaxed mb-6">
+                <p className="text-muted-foreground leading-relaxed mb-6">
                   {member.description}
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <h4 className="font-semibold text-lg text-gray-800 mb-3">Key Achievements</h4>
+                    <h4 className="font-semibold text-lg text-foreground mb-3">Key Achievements</h4>
                     <ul className="space-y-2">
                       {member.achievements.map((achievement) => (
                         <li key={achievement} className="flex items-center">
                           <Award className="h-5 w-5 text-yellow-500 mr-3 flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">{achievement}</span>
+                          <span className="text-muted-foreground text-sm">{achievement}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg text-gray-800 mb-3">Core Expertise</h4>
+                    <h4 className="font-semibold text-lg text-foreground mb-3">Core Expertise</h4>
                     <div className="flex flex-wrap gap-2">
                       {member.expertise.map((skill) => (
                         <span 
@@ -174,12 +174,12 @@ const Team = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7 }}
-          className="text-center mt-20 p-10 bg-gray-100 rounded-2xl"
+          className="text-center mt-20 p-10 bg-muted/60 dark:bg-muted/20 rounded-2xl transition-colors"
         >
-          <h3 className="text-2xl font-bold text-gray-800 mb-3">
+          <h3 className="text-2xl font-bold text-foreground mb-3">
             Experience the Difference of Expert Guidance
           </h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             Our team's combined decades of experience ensures you receive the highest quality financial advice.
           </p>
           <Button 

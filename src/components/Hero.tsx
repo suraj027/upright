@@ -22,9 +22,9 @@ const Hero = () => {
   ];
 
   return (
-    <section 
-      id="home" 
-      className={`min-h-screen flex items-start lg:items-center justify-center relative overflow-hidden bg-white ${
+    <section
+      id="home"
+      className={`min-h-screen flex items-start lg:items-center justify-center relative overflow-hidden bg-background transition-colors ${
         isHighZoom ? "pt-44 pb-12" : "pt-36"
       }`}
     >
@@ -42,7 +42,7 @@ const Hero = () => {
               transition={{ delay: 0.2, duration: 0.8 }}
               className={`${
                 isHighZoom ? "text-3xl sm:text-4xl md:text-5xl" : "text-4xl md:text-6xl"
-              } font-bold mb-6 text-gray-900 leading-tight tracking-tight`}
+              } font-bold mb-6 text-foreground leading-tight tracking-tight`}
             >
               When you come to{" "}
               <span className="text-primary">Upright</span>,<br />
@@ -56,7 +56,7 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className={`${
                 isHighZoom ? "text-lg mb-8" : "text-xl mb-10"
-              } text-gray-600 max-w-3xl mx-auto leading-relaxed`}
+              } text-muted-foreground max-w-3xl mx-auto leading-relaxed`}
             >
               Professional investment and financial advisory services with over two decades of expertise. 
               Your trusted partner for <strong>Mutual Funds</strong> and <strong>General Insurance</strong> solutions.
@@ -111,12 +111,14 @@ const Hero = () => {
                 transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
                 className="text-center"
               >
-                <div className={`bg-gray-100 rounded-xl h-full flex flex-col items-center justify-center ${
+                <div
+                  className={`bg-muted/60 dark:bg-muted/20 rounded-xl border border-border/40 dark:border-border/30 h-full flex flex-col items-center justify-center transition-colors ${
                   isHighZoom ? "p-5" : "p-4"
-                }`}>
+                }`}
+                >
                   <feature.icon className={`text-primary mx-auto mb-3 ${isHighZoom ? "h-7 w-7" : "h-8 w-8"}`} />
-                  <div className={`font-bold text-gray-900 ${isHighZoom ? "text-lg" : "text-xl"}`}>{feature.primary}</div>
-                  <div className={`text-gray-600 ${isHighZoom ? "text-sm" : "text-sm"}`}>{feature.secondary}</div>
+                  <div className={`font-bold text-foreground ${isHighZoom ? "text-lg" : "text-xl"}`}>{feature.primary}</div>
+                  <div className={`text-muted-foreground ${isHighZoom ? "text-sm" : "text-sm"}`}>{feature.secondary}</div>
                 </div>
               </motion.div>
             ))}
@@ -124,21 +126,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center pt-2"
-        >
-          <div className="w-1 h-2 bg-gray-500 rounded-full"></div>
-        </motion.div>
-      </motion.div>
     </section>
   );
 };

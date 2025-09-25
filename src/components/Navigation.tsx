@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
 import { useHighZoom } from "@/hooks/use-high-zoom";
+import { useTheme } from "@/providers/theme-provider";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const { theme } = useTheme();
   const controls = useAnimation();
   const forceMobile = useHighZoom(1.23);
 
@@ -84,26 +87,32 @@ const Navigation = () => {
     } else {
       controls.start("top");
     }
-  }, [isScrolled, controls]);
+  }, [isScrolled, controls, theme]);
 
-  const navVariants = {
-    top: {
-      backgroundColor: "rgba(255, 255, 255, 0)",
-      backdropFilter: "blur(0px)",
-      borderColor: "rgba(226, 232, 240, 0)",
-      boxShadow: "0 0 0 0 rgba(0,0,0,0)",
-    },
-    scrolled: {
-      backgroundColor: "rgba(255, 255, 255, 0.85)",
-      backdropFilter: "blur(8px)",
-      borderColor: "rgba(226, 232, 240, 0.4)",
-      boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-    },
-  };
+  const navVariants = useMemo(
+    () => ({
+      top: {
+        backgroundColor: theme === "dark" ? "rgba(15, 23, 42, 0)" : "rgba(255, 255, 255, 0)",
+        backdropFilter: "blur(0px)",
+        borderColor: theme === "dark" ? "rgba(30, 41, 59, 0)" : "rgba(226, 232, 240, 0)",
+        boxShadow: "0 0 0 0 rgba(0,0,0,0)",
+      },
+      scrolled: {
+        backgroundColor: theme === "dark" ? "rgba(15, 23, 42, 0.9)" : "rgba(255, 255, 255, 0.85)",
+        backdropFilter: "blur(8px)",
+        borderColor: theme === "dark" ? "rgba(148, 163, 184, 0.4)" : "rgba(226, 232, 240, 0.4)",
+        boxShadow:
+          theme === "dark"
+            ? "0 8px 24px rgba(15, 23, 42, 0.35)"
+            : "0 8px 24px rgba(15, 23, 42, 0.08)",
+      },
+    }),
+    [theme],
+  );
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 border-b"
+      className="fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-colors"
       variants={navVariants}
       initial="top"
       animate={controls}
@@ -127,7 +136,7 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div
-            className={`${forceMobile ? "hidden" : "hidden lg:flex"} items-center space-x-2 bg-white/50 backdrop-blur-sm p-2 rounded-full border border-gray-200/80 absolute left-1/2 -translate-x-1/2`}
+            className={`${forceMobile ? "hidden" : "hidden lg:flex"} items-center space-x-2 bg-background/80 dark:bg-background/40 backdrop-blur-sm p-2 rounded-full border border-border/60 dark:border-border/40 shadow-sm absolute left-1/2 -translate-x-1/2 transition-colors`}
           >
             {navItems.map((item) => (
               <Button
@@ -149,17 +158,19 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Icon */}
-          <div className={forceMobile ? "block" : "block lg:hidden"}>
-            <Button
-              variant="ghost"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle navigation menu"
-              aria-controls="mobile-nav"
-              aria-expanded={isOpen}
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <div className={forceMobile ? "block" : "block lg:hidden"}>
+              <Button
+                variant="ghost"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle navigation menu"
+                aria-controls="mobile-nav"
+                aria-expanded={isOpen}
+              >
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -170,7 +181,7 @@ const Navigation = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           id="mobile-nav"
-          className={`${forceMobile ? "" : "lg:hidden"} absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg`}
+          className={`${forceMobile ? "" : "lg:hidden"} absolute top-full left-0 right-0 bg-background/95 dark:bg-background/90 backdrop-blur-sm shadow-lg border-t border-border/60 transition-colors`}
         >
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-2">
             {navItems.map((item) => (

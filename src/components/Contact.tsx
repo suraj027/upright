@@ -95,7 +95,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white">
+    <section id="contact" className="py-24 bg-background transition-colors">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -105,10 +105,10 @@ const Contact = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
             Get in Touch
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Ready to start your investment journey? Contact our expert team for personalized 
             financial advice and comprehensive investment solutions.
           </p>
@@ -128,12 +128,12 @@ const Contact = () => {
                 <Card key={info.title} className="shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
-                      <div className="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="bg-primary/15 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
                         <info.icon className="h-6 w-6" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-lg text-gray-800 mb-1">{info.title}</h4>
-                        <p className="text-gray-600 text-sm whitespace-pre-line mb-3">
+                        <h4 className="font-semibold text-lg text-foreground mb-1">{info.title}</h4>
+                        <p className="text-muted-foreground text-sm whitespace-pre-line mb-3">
                           {info.content}
                         </p>
                         <Button
@@ -155,7 +155,7 @@ const Contact = () => {
                   </CardContent>
                 </Card>
               ))}
-              <Card className="bg-green-500 text-white shadow-lg">
+              <Card className="bg-green-500 text-white shadow-lg dark:bg-green-600">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
                     <MessageSquare className="h-8 w-8 flex-shrink-0" />
@@ -165,7 +165,7 @@ const Contact = () => {
                       <Button
                         size="sm"
                         variant="secondary"
-                        className="bg-white text-green-600 hover:bg-gray-100"
+                        className="bg-background text-green-600 hover:bg-muted dark:text-green-200 dark:hover:bg-muted/60"
                         asChild
                       >
                         <a 
@@ -193,7 +193,7 @@ const Contact = () => {
           >
             <Card className="shadow-xl">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-gray-800">Send us a Message</CardTitle>
+                <CardTitle className="text-2xl font-bold text-foreground">Send us a Message</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">

@@ -30,7 +30,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-white">
+    <section id="about" className="py-24 bg-background transition-colors">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div
@@ -43,14 +43,14 @@ const About = () => {
           <h2
             className={`${
               isHighZoom ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl"
-            } font-bold mb-4 text-gray-800`}
+            } font-bold mb-4 text-foreground`}
           >
             About Upright Investor Services
           </h2>
           <p
             className={`${
               isHighZoom ? "text-base" : "text-lg"
-            } text-gray-600 max-w-3xl mx-auto leading-relaxed`}
+            } text-muted-foreground max-w-3xl mx-auto leading-relaxed`}
           >
             Founded on the principles of integrity, expertise, and long-term value creation, 
             we are your trusted partners in financial growth and security.
@@ -97,35 +97,35 @@ const About = () => {
               >
                 Excellence in Financial Advisory
               </h3>
-              <p className={`${isHighZoom ? "text-base" : "text-lg"} text-gray-600 leading-relaxed`}>
+              <p className={`${isHighZoom ? "text-base" : "text-lg"} text-muted-foreground leading-relaxed`}>
                 At Upright Investor Services LLP, we combine decades of investment experience 
                 with a deep commitment to our clients' financial success. Our approach is 
                 built on the foundation of <strong>simple, uncluttered, and no-nonsense investing</strong> 
                 principles that focus on long-term wealth creation.
               </p>
-              <p className={`${isHighZoom ? "text-base" : "text-lg"} text-gray-600 leading-relaxed`}>
+              <p className={`${isHighZoom ? "text-base" : "text-lg"} text-muted-foreground leading-relaxed`}>
                 From our headquarters at Vihav Supremus, Gotri Main Road, Vadodara, we serve 
                 investors with a comprehensive range of financial services, including mutual 
                 fund investments and general insurance solutions.
               </p>
 
               {/* Company Details */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mt-6">
+              <div className="bg-muted/60 dark:bg-muted/20 border border-border/60 dark:border-border/40 rounded-lg p-6 mt-6 transition-colors">
                 <h4 className="font-semibold text-primary mb-4 text-lg">Company Information</h4>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">AMFI Registration:</span>
-                    <span className="font-bold text-gray-700">ARN-184156</span>
+                    <span className="text-muted-foreground font-medium">AMFI Registration:</span>
+                    <span className="font-bold text-foreground">ARN-184156</span>
                   </div>
                   <hr/>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">Location:</span>
-                    <span className="font-bold text-gray-700">Vadodara, Gujarat</span>
+                    <span className="text-muted-foreground font-medium">Location:</span>
+                    <span className="font-bold text-foreground">Vadodara, Gujarat</span>
                   </div>
                   <hr/>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">Services:</span>
-                    <span className="font-bold text-gray-700">Mutual Funds & Insurance</span>
+                    <span className="text-muted-foreground font-medium">Services:</span>
+                    <span className="font-bold text-foreground">Mutual Funds & Insurance</span>
                   </div>
                 </div>
               </div>
@@ -148,13 +148,13 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
-              className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+              className="bg-card text-card-foreground rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
             >
-              <div className="bg-primary/10 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
+              <div className="bg-primary/15 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
                 <feature.icon className="h-8 w-8" />
               </div>
-              <h4 className="font-semibold text-lg text-gray-800 mb-2">{feature.title}</h4>
-              <p className="text-gray-500 text-sm leading-relaxed">
+              <h4 className="font-semibold text-lg text-foreground mb-2">{feature.title}</h4>
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>

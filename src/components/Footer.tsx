@@ -21,7 +21,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-800 text-white">
+    <footer className="bg-slate-900 text-slate-100 dark:bg-slate-950 transition-colors">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
@@ -32,17 +32,17 @@ const Footer = () => {
               </div>
               <div>
                 <h3 className="text-xl font-bold">Upright Investor Services LLP</h3>
-                <p className="text-sm text-gray-400">Your Partner in Financial Growth</p>
+                <p className="text-sm text-slate-400">Your Partner in Financial Growth</p>
               </div>
             </div>
-            <p className="text-gray-300 mb-6 leading-relaxed text-sm">
+            <p className="text-slate-300 mb-6 leading-relaxed text-sm">
               Professional investment and financial advisory services with over two decades of expertise. 
               Committed to helping you achieve your financial goals with integrity and precision.
             </p>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
-                <span className="text-sm text-gray-300">508 Vihav Supremus, Gotri Main Road, Vadodara 390021</span>
+                <span className="text-sm text-slate-300">508 Vihav Supremus, Gotri Main Road, Vadodara 390021</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary" />
@@ -67,7 +67,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-sm text-gray-300 hover:text-primary transition-colors"
+                    className="text-sm text-slate-300 hover:text-primary transition-colors"
                   >
                     {link.name}
                   </button>
@@ -80,11 +80,11 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6">Connect With Us</h4>
             <div className="flex space-x-4 mb-6">
-              <a href="#" className="p-2 bg-gray-700 rounded-full hover:bg-primary transition-colors"><Linkedin size={20} /></a>
-              <a href="#" className="p-2 bg-gray-700 rounded-full hover:bg-primary transition-colors"><Twitter size={20} /></a>
+              <a href="#" className="p-2 bg-slate-800 rounded-full hover:bg-primary transition-colors"><Linkedin size={20} /></a>
+              <a href="#" className="p-2 bg-slate-800 rounded-full hover:bg-primary transition-colors"><Twitter size={20} /></a>
             </div>
-            <div className="bg-gray-700/50 p-4 rounded-lg">
-              <p className="text-xs text-gray-400">
+            <div className="bg-slate-800/60 p-4 rounded-lg">
+              <p className="text-xs text-slate-400">
                 <strong>AMFI Registered Distributor</strong><br />
                 ARN-184156 | Mutual Fund investments are subject to market risks. Read all scheme related documents carefully. Insurance is the subject matter of solicitation.
               </p>
@@ -94,8 +94,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-700">
-        <div className="container mx-auto px-4 py-6 text-center text-sm text-gray-400">
+      <div className="border-t border-slate-800">
+        <div className="container mx-auto px-4 py-6 text-center text-sm text-slate-400">
           © {currentYear} Upright Investor Services LLP. All Rights Reserved.
         </div>
       </div>
