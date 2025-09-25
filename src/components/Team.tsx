@@ -80,9 +80,9 @@ const Team = () => {
         </motion.div>
 
         {/* Team Members */}
-        <div className="space-y-20">
+        <div className="space-y-12 md:space-y-20">
           {teamMembers.map((member, index) => (
-            <div key={member.name} className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div key={member.name} className="grid lg:grid-cols-12 gap-8 md:gap-12 items-center">
               {/* Image */}
               <motion.div 
                 className={`lg:col-span-5 ${index % 2 === 1 ? 'lg:order-last' : ''}`}
@@ -110,7 +110,7 @@ const Team = () => {
               >
                 <div className="mb-5">
                   <h3 className="text-3xl font-bold text-primary mb-1">{member.name}</h3>
-                  <p className="text-xl text-accent font-semibold">{member.role}</p>
+                  <p className="text-xl text-gray-700 font-semibold">{member.role}</p>
                 </div>
                 <p className="text-gray-600 leading-relaxed mb-6">
                   {member.description}

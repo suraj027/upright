@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Target, Eye, Award, Building } from "lucide-react";
 import officeBuilding from "@/assets/office-building.jpg";
+import { useHighZoom } from "@/hooks/use-high-zoom";
 
 const About = () => {
+  const isHighZoom = useHighZoom();
+
   const features = [
     {
       icon: Target,
@@ -37,16 +40,30 @@ const About = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800">
+          <h2
+            className={`${
+              isHighZoom ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl"
+            } font-bold mb-4 text-gray-800`}
+          >
             About Upright Investor Services
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p
+            className={`${
+              isHighZoom ? "text-base" : "text-lg"
+            } text-gray-600 max-w-3xl mx-auto leading-relaxed`}
+          >
             Founded on the principles of integrity, expertise, and long-term value creation, 
             we are your trusted partners in financial growth and security.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div
+          className={`grid items-center ${
+            isHighZoom
+              ? "gap-12 md:grid-cols-1 lg:grid-cols-2"
+              : "gap-16 md:grid-cols-2"
+          }`}
+        >
           {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -73,16 +90,20 @@ const About = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="space-y-6">
-              <h3 className="text-3xl font-bold text-primary mb-4">
+              <h3
+                className={`${
+                  isHighZoom ? "text-2xl" : "text-3xl"
+                } font-bold text-primary mb-4`}
+              >
                 Excellence in Financial Advisory
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className={`${isHighZoom ? "text-base" : "text-lg"} text-gray-600 leading-relaxed`}>
                 At Upright Investor Services LLP, we combine decades of investment experience 
                 with a deep commitment to our clients' financial success. Our approach is 
                 built on the foundation of <strong>simple, uncluttered, and no-nonsense investing</strong> 
                 principles that focus on long-term wealth creation.
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p className={`${isHighZoom ? "text-base" : "text-lg"} text-gray-600 leading-relaxed`}>
                 From our headquarters at Vihav Supremus, Gotri Main Road, Vadodara, we serve 
                 investors with a comprehensive range of financial services, including mutual 
                 fund investments and general insurance solutions.
@@ -113,7 +134,13 @@ const About = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-24">
+        <div
+          className={`mt-24 grid ${
+            isHighZoom
+              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              : "md:grid-cols-2 lg:grid-cols-4 gap-8"
+          }`}
+        >
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}

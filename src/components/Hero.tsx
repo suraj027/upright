@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Shield, TrendingUp, Users, Briefcase, HeartHandshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useHighZoom } from "@/hooks/use-high-zoom";
 
 const Hero = () => {
+  const isHighZoom = useHighZoom();
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -21,10 +24,12 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white"
+      className={`min-h-screen flex items-start lg:items-center justify-center relative overflow-hidden bg-white ${
+        isHighZoom ? "pt-36 pb-10" : "pt-32 lg:pt-0"
+      }`}
     >
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className={`mx-auto text-center ${isHighZoom ? "max-w-3xl" : "max-w-4xl"}`}>
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -35,7 +40,9 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight"
+              className={`${
+                isHighZoom ? "text-3xl sm:text-4xl md:text-5xl" : "text-4xl md:text-6xl"
+              } font-bold mb-6 text-gray-900 leading-tight tracking-tight`}
             >
               When you come to{" "}
               <span className="text-primary">Upright</span>,<br />
@@ -47,7 +54,9 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed"
+              className={`${
+                isHighZoom ? "text-lg mb-8" : "text-xl mb-10"
+              } text-gray-600 max-w-3xl mx-auto leading-relaxed`}
             >
               Professional investment and financial advisory services with over two decades of expertise. 
               Your trusted partner for <strong>Mutual Funds</strong> and <strong>General Insurance</strong> solutions.
@@ -57,11 +66,15 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+              className={`flex flex-col sm:flex-row justify-center ${
+                isHighZoom ? "gap-3 mb-12" : "gap-4 mb-16"
+              }`}
             >
               <Button 
                 onClick={() => scrollToSection("#services")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                className={`bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ${
+                  isHighZoom ? "px-6 py-5 text-base" : "px-8 py-6 text-lg"
+                }`}
               >
                 Explore Services
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -70,7 +83,9 @@ const Hero = () => {
               <Button 
                 onClick={() => scrollToSection("#contact")}
                 variant="outline"
-                className="border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300"
+                className={`border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground font-semibold rounded-lg transition-all duration-300 ${
+                  isHighZoom ? "px-6 py-5 text-base" : "px-8 py-6 text-lg"
+                }`}
               >
                 Get Consultation
               </Button>
@@ -82,7 +97,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+            className={
+              isHighZoom
+                ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5"
+                : "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+            }
           >
             {features.map((feature, index) => (
               <motion.div
@@ -92,10 +111,12 @@ const Hero = () => {
                 transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
                 className="text-center"
               >
-                <div className="bg-gray-100 rounded-xl p-4 h-full flex flex-col items-center justify-center">
-                  <feature.icon className="h-8 w-8 text-primary mx-auto mb-3" />
-                  <div className="text-xl font-bold text-gray-900">{feature.primary}</div>
-                  <div className="text-sm text-gray-600">{feature.secondary}</div>
+                <div className={`bg-gray-100 rounded-xl h-full flex flex-col items-center justify-center ${
+                  isHighZoom ? "p-5" : "p-4"
+                }`}>
+                  <feature.icon className={`text-primary mx-auto mb-3 ${isHighZoom ? "h-7 w-7" : "h-8 w-8"}`} />
+                  <div className={`font-bold text-gray-900 ${isHighZoom ? "text-lg" : "text-xl"}`}>{feature.primary}</div>
+                  <div className={`text-gray-600 ${isHighZoom ? "text-sm" : "text-sm"}`}>{feature.secondary}</div>
                 </div>
               </motion.div>
             ))}
