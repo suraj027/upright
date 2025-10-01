@@ -30,27 +30,27 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-background transition-colors">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-16 sm:py-20 md:py-24 bg-background transition-colors">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
           <h2
             className={`${
-              isHighZoom ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl"
-            } font-bold mb-4 text-foreground`}
+              isHighZoom ? "text-2xl sm:text-3xl md:text-4xl" : "text-3xl sm:text-4xl md:text-5xl"
+            } font-bold mb-3 sm:mb-4 text-foreground px-2`}
           >
             About Upright Investor Services
           </h2>
           <p
             className={`${
-              isHighZoom ? "text-base" : "text-lg"
-            } text-muted-foreground max-w-3xl mx-auto leading-relaxed`}
+              isHighZoom ? "text-sm sm:text-base" : "text-base sm:text-lg"
+            } text-muted-foreground max-w-3xl mx-auto leading-relaxed px-2`}
           >
             Founded on the principles of integrity, expertise, and long-term value creation, 
             we are your trusted partners in financial growth and security.
@@ -60,8 +60,8 @@ const About = () => {
         <div
           className={`grid items-center ${
             isHighZoom
-              ? "gap-12 md:grid-cols-1 lg:grid-cols-2"
-              : "gap-16 md:grid-cols-2"
+              ? "gap-8 sm:gap-10 md:gap-12 lg:grid-cols-2"
+              : "gap-10 sm:gap-12 md:gap-16 md:grid-cols-2"
           }`}
         >
           {/* Image */}
@@ -92,25 +92,25 @@ const About = () => {
             <div className="space-y-6">
               <h3
                 className={`${
-                  isHighZoom ? "text-2xl" : "text-3xl"
-                } font-bold text-primary mb-4`}
+                  isHighZoom ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"
+                } font-bold text-primary mb-3 sm:mb-4`}
               >
                 Excellence in Financial Advisory
               </h3>
-              <p className={`${isHighZoom ? "text-base" : "text-lg"} text-muted-foreground leading-relaxed`}>
+              <p className={`${isHighZoom ? "text-sm sm:text-base" : "text-base sm:text-lg"} text-muted-foreground leading-relaxed`}>
                 At Upright Investor Services LLP, we combine decades of investment experience 
                 with a deep commitment to our clients' financial success. Our approach is 
                 built on the foundation of <strong>simple, uncluttered, and no-nonsense investing</strong> 
                 principles that focus on long-term wealth creation.
               </p>
-              <p className={`${isHighZoom ? "text-base" : "text-lg"} text-muted-foreground leading-relaxed`}>
+              <p className={`${isHighZoom ? "text-sm sm:text-base" : "text-base sm:text-lg"} text-muted-foreground leading-relaxed`}>
                 From our headquarters at Vihav Supremus, Gotri Main Road, Vadodara, we serve 
                 investors with a comprehensive range of financial services, including mutual 
                 fund investments and general insurance solutions.
               </p>
 
               {/* Company Details */}
-              <div className="bg-muted/60 dark:bg-muted/20 border border-border/60 dark:border-border/40 rounded-lg p-6 mt-6 transition-colors">
+              <div className="bg-muted/60 dark:bg-muted/20 border border-border/60 dark:border-border/40 rounded-lg p-4 sm:p-6 mt-5 sm:mt-6 transition-colors">
                 <h4 className="font-semibold text-primary mb-4 text-lg">Company Information</h4>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between items-center">
@@ -135,10 +135,10 @@ const About = () => {
 
         {/* Features Grid */}
         <div
-          className={`mt-24 grid ${
+          className={`mt-14 sm:mt-20 md:mt-24 grid ${
             isHighZoom
-              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-              : "md:grid-cols-2 lg:grid-cols-4 gap-8"
+              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+              : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8"
           }`}
         >
           {features.map((feature, index) => (
@@ -146,15 +146,15 @@ const About = () => {
               key={feature.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
-              className="bg-card text-card-foreground rounded-xl shadow-lg p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+              className="bg-card text-card-foreground rounded-xl shadow-lg p-6 sm:p-8 text-center hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300"
             >
-              <div className="bg-primary/15 text-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
-                <feature.icon className="h-8 w-8" />
+              <div className="bg-primary/15 text-primary w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5">
+                <feature.icon className="h-7 w-7 sm:h-8 sm:w-8" />
               </div>
-              <h4 className="font-semibold text-lg text-foreground mb-2">{feature.title}</h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <h4 className="font-semibold text-base sm:text-lg text-foreground mb-2">{feature.title}</h4>
+              <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>

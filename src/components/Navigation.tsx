@@ -118,19 +118,19 @@ const Navigation = () => {
       animate={controls}
       transition={{ duration: 0.3 }}
     >
-      <div className="container mx-auto px-4">
-        <div className="relative flex items-center justify-between h-20">
+      <div className="container mx-auto px-3 sm:px-4">
+        <div className="relative flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-2 cursor-pointer"
+            className="flex items-center space-x-2 cursor-pointer min-w-0"
             onClick={() => scrollToSection("#home")}
           >
-            <div className="font-black text-2xl text-primary">UIG</div>
-            <div className="hidden sm:block">
-              <h1 className="font-bold text-lg text-primary">Upright Investor</h1>
-              <p className="text-xs text-muted-foreground">Services LLP</p>
+            <div className="font-black text-xl sm:text-2xl text-primary flex-shrink-0">UIG</div>
+            <div className="hidden xs:block min-w-0">
+              <h1 className="font-bold text-sm sm:text-lg text-primary truncate">Upright Investor</h1>
+              <p className="text-xs text-muted-foreground truncate">Services LLP</p>
             </div>
           </motion.div>
 
@@ -158,17 +158,19 @@ const Navigation = () => {
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <ThemeToggle />
             <div className={forceMobile ? "block" : "block lg:hidden"}>
               <Button
                 variant="ghost"
+                size="sm"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="Toggle navigation menu"
                 aria-controls="mobile-nav"
                 aria-expanded={isOpen}
+                className="h-10 w-10 p-0"
               >
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isOpen ? <X className="h-5 w-5 sm:h-6 sm:w-6" /> : <Menu className="h-5 w-5 sm:h-6 sm:w-6" />}
               </Button>
             </div>
           </div>
@@ -183,12 +185,12 @@ const Navigation = () => {
           id="mobile-nav"
           className={`${forceMobile ? "" : "lg:hidden"} absolute top-full left-0 right-0 bg-background/95 dark:bg-background/90 backdrop-blur-sm shadow-lg border-t border-border/60 transition-colors`}
         >
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-2">
+          <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex flex-col space-y-1 sm:space-y-2">
             {navItems.map((item) => (
               <Button
                 key={item.name}
                 variant={activeLink === item.name ? "secondary" : "ghost"}
-                className="w-full justify-start"
+                className="w-full justify-start text-base h-12 touch-manipulation"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(item.href);

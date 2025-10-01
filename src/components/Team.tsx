@@ -60,38 +60,38 @@ const Team = () => {
   ];
 
   return (
-    <section id="team" className="py-24 bg-background transition-colors">
-      <div className="container mx-auto px-4">
+    <section id="team" className="py-16 sm:py-20 md:py-24 bg-background transition-colors">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-foreground px-2">
             Our Leadership Team
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-2">
             Meet the experienced professionals who guide Upright Investor Services with decades 
             of combined expertise in investments and financial planning.
           </p>
         </motion.div>
 
         {/* Team Members */}
-        <div className="space-y-12 md:space-y-20">
+        <div className="space-y-10 sm:space-y-12 md:space-y-16 lg:space-y-20">
           {teamMembers.map((member, index) => (
-            <div key={member.name} className="grid lg:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div key={member.name} className="grid lg:grid-cols-12 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
               {/* Image */}
               <motion.div 
                 className={`lg:col-span-5 ${index % 2 === 1 ? 'lg:order-last' : ''}`}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.7 }}
               >
-                <Card className="overflow-hidden shadow-2xl">
+                <Card className="overflow-hidden shadow-xl sm:shadow-2xl">
                   <img 
                     src={member.image}
                     alt={member.name}
@@ -103,38 +103,38 @@ const Team = () => {
               {/* Content */}
               <motion.div
                 className="lg:col-span-7"
-                initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.7 }}
               >
-                <div className="mb-5">
-                  <h3 className="text-3xl font-bold text-primary mb-1">{member.name}</h3>
-                  <p className="text-xl text-muted-foreground font-semibold">{member.role}</p>
+                <div className="mb-4 sm:mb-5">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-primary mb-1">{member.name}</h3>
+                  <p className="text-lg sm:text-xl text-muted-foreground font-semibold">{member.role}</p>
                 </div>
-                <p className="text-muted-foreground leading-relaxed mb-6">
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5 sm:mb-6">
                   {member.description}
                 </p>
 
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 mb-5 sm:mb-6">
                   <div>
-                    <h4 className="font-semibold text-lg text-foreground mb-3">Key Achievements</h4>
-                    <ul className="space-y-2">
+                    <h4 className="font-semibold text-base sm:text-lg text-foreground mb-2 sm:mb-3">Key Achievements</h4>
+                    <ul className="space-y-1.5 sm:space-y-2">
                       {member.achievements.map((achievement) => (
-                        <li key={achievement} className="flex items-center">
-                          <Award className="h-5 w-5 text-yellow-500 mr-3 flex-shrink-0" />
-                          <span className="text-muted-foreground text-sm">{achievement}</span>
+                        <li key={achievement} className="flex items-start">
+                          <Award className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500 mr-2 sm:mr-3 flex-shrink-0 mt-0.5" />
+                          <span className="text-muted-foreground text-xs sm:text-sm">{achievement}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg text-foreground mb-3">Core Expertise</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <h4 className="font-semibold text-base sm:text-lg text-foreground mb-2 sm:mb-3">Core Expertise</h4>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {member.expertise.map((skill) => (
                         <span 
                           key={skill}
-                          className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium"
+                          className="bg-primary/10 text-primary px-2 sm:px-3 py-1 rounded-full text-xs font-medium"
                         >
                           {skill}
                         </span>
@@ -144,12 +144,13 @@ const Team = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col xs:flex-row gap-2 sm:gap-3">
                   {member.links.map((link) => (
                     <Button
                       key={link.title}
                       variant="outline"
-                      className="w-full justify-center"
+                      size="sm"
+                      className="w-full justify-center text-xs sm:text-sm"
                       asChild
                     >
                       <a 
@@ -174,12 +175,12 @@ const Team = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7 }}
-          className="text-center mt-20 p-10 bg-muted/60 dark:bg-muted/20 rounded-2xl transition-colors"
+          className="text-center mt-12 sm:mt-16 md:mt-20 p-6 sm:p-8 md:p-10 bg-muted/60 dark:bg-muted/20 rounded-xl sm:rounded-2xl transition-colors"
         >
-          <h3 className="text-2xl font-bold text-foreground mb-3">
+          <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3 px-2">
             Experience the Difference of Expert Guidance
           </h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground mb-5 sm:mb-6 max-w-2xl mx-auto px-2">
             Our team's combined decades of experience ensures you receive the highest quality financial advice.
           </p>
           <Button 
@@ -188,6 +189,7 @@ const Team = () => {
               if (element) element.scrollIntoView({ behavior: "smooth" });
             }}
             size="lg"
+            className="w-full sm:w-auto"
           >
             Schedule a Consultation
           </Button>
