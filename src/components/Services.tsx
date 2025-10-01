@@ -1,9 +1,9 @@
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { TrendingUp, Shield, Calculator, PieChart, Users, Award, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useHighZoom } from "@/hooks/use-high-zoom";
-import { useRef } from "react";
 
 const Services = () => {
   const isHighZoom = useHighZoom();
