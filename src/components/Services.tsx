@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { TrendingUp, Shield, Calculator, PieChart, Users, Award, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,43 +8,7 @@ import { useHighZoom } from "@/hooks/use-high-zoom";
 const Services = () => {
   const isHighZoom = useHighZoom();
   const sectionRef = useRef(null);
-  const stackSectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isStackInView, setIsStackInView] = useState(false);
-
-  useEffect(() => {
-    const stackSection = stackSectionRef.current;
-    if (!stackSection) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsStackInView(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(stackSection);
-
-    const handleScroll = () => {
-      if (!isStackInView || !stackSection) return;
-
-      requestAnimationFrame(() => {
-        const rect = stackSection.getBoundingClientRect();
-        const sectionHeight = stackSection.offsetHeight;
-        const progress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - window.innerHeight)));
-        setScrollProgress(progress);
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isStackInView]);
 
   const services = [
     {
@@ -139,99 +103,54 @@ const Services = () => {
           </p>
         </motion.div>
 
-        {/* Card Stack Animation Section */}
-        <div 
-          ref={stackSectionRef}
-          className="relative"
-          style={{ height: '300vh' }}
+        {/* Main Services */}
+        <div
+          className={`grid ${
+            isHighZoom
+              ? "grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-12 sm:mb-16"
+              : "grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-14 sm:mb-20"
+          }`}
         >
-          <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-            <div className="relative w-full max-w-6xl mx-auto px-4" style={{ height: '70vh', maxHeight: '700px' }}>
-              {services.map((service, index) => {
-                const cardProgress = index === 0 ? scrollProgress * 3 : (scrollProgress - 0.33 * index) * 3;
-                const isActive = cardProgress >= 0 && cardProgress <= 1;
-                const translateY = isActive ? (1 - cardProgress) * 100 : cardProgress < 0 ? 100 : 0;
-                const scale = isActive ? 0.9 + (cardProgress * 0.1) : cardProgress > 1 ? 1 : 0.9;
-                const opacity = isActive ? cardProgress : cardProgress > 1 ? 1 : 0;
-
-                return (
-                  <div
-                    key={service.title}
-                    className="absolute inset-0 rounded-2xl overflow-hidden"
-                    style={{
-                      transform: `translateY(${translateY}%) scale(${scale})`,
-                      opacity: opacity,
-                      zIndex: 10 + index * 10,
-                      transition: 'transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease',
-                      willChange: 'transform, opacity',
-                      pointerEvents: cardProgress >= 0.8 ? 'auto' : 'none',
-                    }}
-                  >
-                    <div className="relative h-full w-full">
-                      {/* Background with gradient overlay */}
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-background/40"
-                        style={{
-                          backgroundImage: index === 0 
-                            ? 'linear-gradient(135deg, hsl(var(--primary) / 0.3), hsl(var(--primary) / 0.1))' 
-                            : 'linear-gradient(135deg, hsl(var(--primary) / 0.25), hsl(var(--muted) / 0.3))',
-                          backgroundBlendMode: 'overlay'
-                        }}
-                      />
-                      
-                      {/* Glass card content */}
-                      <div className="relative h-full glass-strong backdrop-blur-xl border border-white/20 rounded-2xl p-6 sm:p-8 md:p-12 flex flex-col justify-between">
-                        {/* Top badge */}
-                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full w-fit mb-6">
-                          <service.icon className="h-5 w-5 text-primary" />
-                          <span className="text-sm font-medium text-foreground">Premium Service</span>
-                        </div>
-
-                        {/* Content */}
-                        <div className="flex-1">
-                          <h3 className={`${isHighZoom ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl md:text-5xl"} font-display font-bold mb-4 sm:mb-6 text-foreground`}>
-                            {service.title}
-                          </h3>
-                          <p className={`${isHighZoom ? "text-base sm:text-lg" : "text-lg sm:text-xl md:text-2xl"} text-muted-foreground mb-6 sm:mb-8 max-w-2xl leading-relaxed`}>
-                            {service.description}
-                          </p>
-                          
-                          {/* Features grid */}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8">
-                            {service.features.map((feature) => (
-                              <div key={feature} className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                                <span className="text-sm sm:text-base text-foreground font-medium">{feature}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* CTA Button */}
-                        <div className="flex gap-4">
-                          <Button 
-                            onClick={scrollToContact}
-                            className="bg-gradient-primary hover:opacity-90 transition-opacity"
-                            size={isHighZoom ? "default" : "lg"}
-                          >
-                            Get Started
-                          </Button>
-                          <Button 
-                            onClick={scrollToContact}
-                            variant="outline"
-                            className="backdrop-blur-sm bg-white/10 border-white/20 hover:bg-white/20"
-                            size={isHighZoom ? "default" : "lg"}
-                          >
-                            Learn More
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: index * 0.2, duration: 0.7 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+            >
+              <Card className="h-full glass hover:glass-strong shadow-soft hover:shadow-accent transition-all duration-300 border-0">
+                <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 pb-3 sm:pb-4">
+                  <div className="bg-gradient-primary w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-accent">
+                    <service.icon className={`${isHighZoom ? "h-5 w-5 sm:h-6 sm:w-6" : "h-6 w-6 sm:h-7 sm:w-7"} text-white`} />
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                  <CardTitle className={`${isHighZoom ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"} font-display font-bold text-foreground`}>
+                    {service.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className={`${isHighZoom ? "text-sm sm:text-base" : "text-base sm:text-lg"} text-muted-foreground mb-4 sm:mb-6`}>
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2 sm:space-y-3">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="flex items-center">
+                        <CheckCircle className={`${isHighZoom ? "h-4 w-4" : "h-4 w-4 sm:h-5 sm:w-5"} text-green-500 mr-2 sm:mr-3 flex-shrink-0`} />
+                        <span className={`${isHighZoom ? "text-xs sm:text-sm" : "text-sm sm:text-base"} text-foreground`}>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button 
+                    onClick={scrollToContact}
+                    className="w-full mt-6 sm:mt-8"
+                    size={isHighZoom ? "default" : "lg"}
+                  >
+                    Learn More
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
 
         {/* Why Choose Us */}
