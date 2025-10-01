@@ -21,17 +21,20 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-slate-900 text-slate-100 dark:bg-slate-950 transition-colors">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
+    <footer className="relative overflow-hidden bg-slate-900 text-slate-100 dark:bg-slate-950">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-start space-x-3 mb-4">
-              <div className="bg-primary p-2 sm:p-3 rounded-lg flex-shrink-0">
+              <div className="bg-gradient-primary p-2 sm:p-3 rounded-lg flex-shrink-0 shadow-accent">
                 <TrendingUp className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg sm:text-xl font-bold">Upright Investor Services LLP</h3>
+                <h3 className="text-lg sm:text-xl font-display font-bold">Upright Investor Services LLP</h3>
                 <p className="text-xs sm:text-sm text-slate-400">Your Partner in Financial Growth</p>
               </div>
             </div>

@@ -60,7 +60,9 @@ const Team = () => {
   ];
 
   return (
-    <section id="team" className="py-16 sm:py-20 md:py-24 bg-background transition-colors">
+    <section id="team" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{
+      background: "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%)",
+    }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -70,8 +72,8 @@ const Team = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-foreground px-2">
-            Our Leadership Team
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-3 sm:mb-4 text-foreground px-2">
+            Our <span className="bg-gradient-primary bg-clip-text text-transparent">Leadership</span> Team
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-2">
             Meet the experienced professionals who guide Upright Investor Services with decades 
@@ -91,7 +93,7 @@ const Team = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.7 }}
               >
-                <Card className="overflow-hidden shadow-xl sm:shadow-2xl">
+                <Card className="overflow-hidden shadow-accent hover:shadow-large transition-shadow duration-300 glass border-0">
                   <img 
                     src={member.image}
                     alt={member.name}
@@ -109,7 +111,7 @@ const Team = () => {
                 transition={{ duration: 0.7 }}
               >
                 <div className="mb-4 sm:mb-5">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-primary mb-1">{member.name}</h3>
+                  <h3 className="text-2xl sm:text-3xl font-display font-bold bg-gradient-primary bg-clip-text text-transparent mb-1">{member.name}</h3>
                   <p className="text-lg sm:text-xl text-muted-foreground font-semibold">{member.role}</p>
                 </div>
                 <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5 sm:mb-6">
@@ -175,10 +177,10 @@ const Team = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7 }}
-          className="text-center mt-12 sm:mt-16 md:mt-20 p-6 sm:p-8 md:p-10 bg-muted/60 dark:bg-muted/20 rounded-xl sm:rounded-2xl transition-colors"
+          className="text-center mt-12 sm:mt-16 md:mt-20 p-6 sm:p-8 md:p-10 glass rounded-xl sm:rounded-2xl shadow-accent"
         >
-          <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3 px-2">
-            Experience the Difference of Expert Guidance
+          <h3 className="text-xl sm:text-2xl font-display font-bold text-foreground mb-2 sm:mb-3 px-2">
+            Experience the Difference of <span className="bg-gradient-primary bg-clip-text text-transparent">Expert Guidance</span>
           </h3>
           <p className="text-sm sm:text-base text-muted-foreground mb-5 sm:mb-6 max-w-2xl mx-auto px-2">
             Our team's combined decades of experience ensures you receive the highest quality financial advice.

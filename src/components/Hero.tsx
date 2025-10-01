@@ -1,10 +1,19 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Shield, TrendingUp, Users, Briefcase, HeartHandshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useHighZoom } from "@/hooks/use-high-zoom";
+import { useEffect, useState, useRef } from "react";
 
 const Hero = () => {
   const isHighZoom = useHighZoom();
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -23,11 +32,21 @@ const Hero = () => {
 
   return (
     <section
+      ref={sectionRef}
       id="home"
-      className={`min-h-screen flex items-start lg:items-center justify-center relative overflow-hidden bg-background transition-colors ${
+      className={`min-h-screen flex items-start lg:items-center justify-center relative overflow-hidden parallax-container ${
         isHighZoom ? "pt-44 pb-12 px-4" : "pt-36 px-4"
       }`}
+      style={{
+        background: "linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%)",
+      }}
     >
+      {/* Gradient overlay */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-hero opacity-50"
+        style={{ y }}
+      />
+      
       <div className="container mx-auto relative z-10">
         <div className={`mx-auto text-center ${isHighZoom ? "max-w-3xl" : "max-w-5xl"}`}>
           {/* Content */}
@@ -42,12 +61,12 @@ const Hero = () => {
               transition={{ delay: 0.2, duration: 0.8 }}
               className={`${
                 isHighZoom ? "text-2xl sm:text-3xl md:text-4xl lg:text-5xl" : "text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-              } font-bold mb-4 sm:mb-6 text-foreground leading-tight tracking-tight px-2`}
+              } font-display font-bold mb-4 sm:mb-6 text-foreground leading-tight tracking-tight px-2`}
             >
               When you come to{" "}
-              <span className="text-primary">Upright</span>,<br className="hidden sm:block" />
+              <span className="bg-gradient-primary bg-clip-text text-transparent">Upright</span>,<br className="hidden sm:block" />
               you've got it{" "}
-              <span className="text-primary">Right!</span>
+              <span className="bg-gradient-primary bg-clip-text text-transparent">Right!</span>
             </motion.h1>
 
             <motion.p 
@@ -72,7 +91,7 @@ const Hero = () => {
             >
               <Button 
                 onClick={() => scrollToSection("#services")}
-                className={`w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ${
+                className={`w-full sm:w-auto bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold rounded-lg shadow-accent hover:shadow-large transform hover:-translate-y-1 transition-all duration-300 ${
                   isHighZoom ? "px-6 py-5 text-base" : "px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg"
                 }`}
               >
@@ -82,8 +101,7 @@ const Hero = () => {
               
               <Button 
                 onClick={() => scrollToSection("#contact")}
-                variant="outline"
-                className={`w-full sm:w-auto border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground font-semibold rounded-lg transition-all duration-300 ${
+                className={`w-full sm:w-auto glass hover:glass-strong border-primary/20 text-foreground hover:text-primary font-semibold rounded-lg transition-all duration-300 ${
                   isHighZoom ? "px-6 py-5 text-base" : "px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg"
                 }`}
               >
@@ -109,10 +127,11 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
+                whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center"
               >
                 <div
-                  className={`bg-muted/60 dark:bg-muted/20 rounded-xl border border-border/40 dark:border-border/30 h-full flex flex-col items-center justify-center transition-colors ${
+                  className={`glass hover:glass-strong rounded-xl shadow-soft hover:shadow-accent h-full flex flex-col items-center justify-center transition-all duration-300 ${
                   isHighZoom ? "p-4 sm:p-5" : "p-3 sm:p-4"
                 }`}
                 >

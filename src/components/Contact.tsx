@@ -95,7 +95,9 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 bg-background transition-colors">
+    <section id="contact" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{
+      background: "linear-gradient(180deg, hsl(var(--muted)) 0%, hsl(var(--background)) 100%)",
+    }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -105,8 +107,8 @@ const Contact = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-foreground px-2">
-            Get in Touch
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-3 sm:mb-4 text-foreground px-2">
+            Get in <span className="bg-gradient-primary bg-clip-text text-transparent">Touch</span>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-2">
             Ready to start your investment journey? Contact our expert team for personalized 
@@ -125,11 +127,11 @@ const Contact = () => {
           >
             <div className="space-y-4 sm:space-y-6">
               {contactInfo.map((info) => (
-                <Card key={info.title} className="shadow-md hover:shadow-lg transition-shadow">
+                <Card key={info.title} className="glass hover:glass-strong shadow-soft hover:shadow-accent transition-all duration-300 border-0">
                   <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start space-x-3 sm:space-x-4">
-                      <div className="bg-primary/15 text-primary w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <info.icon className="h-5 w-5 sm:h-6 sm:w-6" />
+                      <div className="bg-gradient-primary w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0 shadow-accent">
+                        <info.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="font-semibold text-base sm:text-lg text-foreground mb-1">{info.title}</h4>
@@ -155,7 +157,7 @@ const Contact = () => {
                   </CardContent>
                 </Card>
               ))}
-              <Card className="bg-green-500 text-white shadow-lg dark:bg-green-600">
+              <Card className="bg-green-600 text-white shadow-accent border-0">
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center space-x-3 sm:space-x-4">
                     <MessageSquare className="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0" />
@@ -191,9 +193,9 @@ const Contact = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8 }}
           >
-            <Card className="shadow-lg sm:shadow-xl">
+            <Card className="glass-strong shadow-accent border-0">
               <CardHeader className="p-4 sm:p-6">
-                <CardTitle className="text-xl sm:text-2xl font-bold text-foreground">Send us a Message</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl font-display font-bold text-foreground">Send us a Message</CardTitle>
               </CardHeader>
               <CardContent className="p-4 sm:p-6 pt-0">
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
@@ -240,7 +242,7 @@ const Contact = () => {
           transition={{ duration: 0.7 }}
           className="mt-10 sm:mt-12 md:mt-16"
         >
-          <Card className="overflow-hidden shadow-lg">
+          <Card className="overflow-hidden shadow-accent border-0">
             <div className="h-64 sm:h-80 md:h-96">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.119617172855!2d73.14494931542877!3d22.31142394898084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8a35f6c90e5%3A0x3ac999e54a4346b!2sVihav%20Supremus!5e0!3m2!1sen!2sin!4v1662545338388!5m2!1sen!2sin"

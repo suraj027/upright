@@ -56,7 +56,9 @@ const Publications = () => {
   ];
 
   return (
-    <section id="publications" className="py-16 sm:py-20 md:py-24 bg-muted/40 dark:bg-background transition-colors">
+    <section id="publications" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{
+      background: "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 50%, hsl(var(--background)) 100%)",
+    }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -66,8 +68,8 @@ const Publications = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-10 sm:mb-12 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-foreground px-2">
-            Publications & Recognition
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-3 sm:mb-4 text-foreground px-2">
+            Publications & <span className="bg-gradient-primary bg-clip-text text-transparent">Recognition</span>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-2">
             Our team's expertise is recognized through published works, media features, 
@@ -85,15 +87,15 @@ const Publications = () => {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
             >
-              <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Card className="h-full flex flex-col glass hover:glass-strong shadow-soft hover:shadow-accent transition-all duration-300 border-0">
                 <CardHeader className="p-4 sm:p-6">
                   <div className="flex items-start gap-3 sm:gap-4 mb-2">
-                    <div className="bg-primary/15 text-primary w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                      <pub.icon className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <div className="bg-gradient-primary w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-accent">
+                      <pub.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs sm:text-sm font-semibold text-primary">{pub.type}</p>
-                      <CardTitle className="text-lg sm:text-xl font-bold text-foreground">{pub.title}</CardTitle>
+                      <CardTitle className="text-lg sm:text-xl font-display font-bold text-foreground">{pub.title}</CardTitle>
                     </div>
                   </div>
                   <p className="text-xs sm:text-sm text-muted-foreground italic">"{pub.subtitle}" by {pub.author}</p>
@@ -135,9 +137,9 @@ const Publications = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7 }}
-          className="mt-12 sm:mt-16 md:mt-20 text-center p-6 sm:p-8 md:p-10 bg-gradient-to-r from-primary to-blue-600 rounded-xl sm:rounded-2xl text-white shadow-xl"
+          className="mt-12 sm:mt-16 md:mt-20 text-center p-6 sm:p-8 md:p-10 bg-gradient-primary rounded-xl sm:rounded-2xl text-white shadow-accent"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 px-2">Thought Leadership in Finance</h3>
+          <h3 className="text-2xl sm:text-3xl font-display font-bold mb-3 sm:mb-4 px-2">Thought Leadership in Finance</h3>
           <p className="text-sm sm:text-base mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto px-2">
             Our commitment to financial education is reflected through published works, media recognition, and community mentorship.
           </p>

@@ -30,7 +30,9 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-16 sm:py-20 md:py-24 bg-background transition-colors">
+    <section id="about" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" style={{
+      background: "linear-gradient(180deg, hsl(var(--muted)) 0%, hsl(var(--background)) 100%)",
+    }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -43,9 +45,9 @@ const About = () => {
           <h2
             className={`${
               isHighZoom ? "text-2xl sm:text-3xl md:text-4xl" : "text-3xl sm:text-4xl md:text-5xl"
-            } font-bold mb-3 sm:mb-4 text-foreground px-2`}
+            } font-display font-bold mb-3 sm:mb-4 text-foreground px-2`}
           >
-            About Upright Investor Services
+            About <span className="bg-gradient-primary bg-clip-text text-transparent">Upright</span> Investor Services
           </h2>
           <p
             className={`${
@@ -72,13 +74,13 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl shadow-accent hover:shadow-large transition-shadow duration-300">
               <img 
                 src={officeBuilding} 
                 alt="Upright Investor Services Office"
                 className="w-full h-auto object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
           </motion.div>
 
@@ -93,7 +95,7 @@ const About = () => {
               <h3
                 className={`${
                   isHighZoom ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"
-                } font-bold text-primary mb-3 sm:mb-4`}
+                } font-display font-bold bg-gradient-primary bg-clip-text text-transparent mb-3 sm:mb-4`}
               >
                 Excellence in Financial Advisory
               </h3>
@@ -110,8 +112,8 @@ const About = () => {
               </p>
 
               {/* Company Details */}
-              <div className="bg-muted/60 dark:bg-muted/20 border border-border/60 dark:border-border/40 rounded-lg p-4 sm:p-6 mt-5 sm:mt-6 transition-colors">
-                <h4 className="font-semibold text-primary mb-4 text-lg">Company Information</h4>
+              <div className="glass rounded-lg p-4 sm:p-6 mt-5 sm:mt-6 shadow-soft">
+                <h4 className="font-semibold font-display bg-gradient-primary bg-clip-text text-transparent mb-4 text-lg">Company Information</h4>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground font-medium">AMFI Registration:</span>
@@ -148,12 +150,13 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
-              className="bg-card text-card-foreground rounded-xl shadow-lg p-6 sm:p-8 text-center hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300"
+              whileHover={{ y: -8, scale: 1.05 }}
+              className="glass hover:glass-strong rounded-xl shadow-soft hover:shadow-accent p-6 sm:p-8 text-center transition-all duration-300"
             >
-              <div className="bg-primary/15 text-primary w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5">
-                <feature.icon className="h-7 w-7 sm:h-8 sm:w-8" />
+              <div className="bg-gradient-primary w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5 shadow-accent">
+                <feature.icon className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
               </div>
-              <h4 className="font-semibold text-base sm:text-lg text-foreground mb-2">{feature.title}</h4>
+              <h4 className="font-semibold font-display text-base sm:text-lg text-foreground mb-2">{feature.title}</h4>
               <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
                 {feature.description}
               </p>

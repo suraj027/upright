@@ -112,13 +112,22 @@ const Navigation = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-colors"
+      className="fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-300"
       variants={navVariants}
       initial="top"
       animate={controls}
       transition={{ duration: 0.3 }}
+      style={
+        isScrolled
+          ? {
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+            }
+          : {}
+      }
     >
-      <div className="container mx-auto px-3 sm:px-4">
+      <div className={`absolute inset-0 ${isScrolled ? "glass-strong" : ""}`} />
+      <div className="container mx-auto px-3 sm:px-4 relative z-10">
         <div className="relative flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <motion.div
@@ -127,16 +136,18 @@ const Navigation = () => {
             className="flex items-center space-x-2 cursor-pointer min-w-0"
             onClick={() => scrollToSection("#home")}
           >
-            <div className="font-black text-xl sm:text-2xl text-primary flex-shrink-0">UIG</div>
+            <div className="p-2 bg-gradient-primary rounded-lg shadow-accent">
+              <div className="font-black text-base sm:text-lg text-white">UIG</div>
+            </div>
             <div className="hidden xs:block min-w-0">
-              <h1 className="font-bold text-sm sm:text-lg text-primary truncate">Upright Investor</h1>
+              <h1 className="font-display font-bold text-sm sm:text-base bg-gradient-primary bg-clip-text text-transparent truncate">Upright Investor</h1>
               <p className="text-xs text-muted-foreground truncate">Services LLP</p>
             </div>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div
-            className={`${forceMobile ? "hidden" : "hidden lg:flex"} items-center space-x-2 bg-background/80 dark:bg-background/40 backdrop-blur-sm p-2 rounded-full border border-border/60 dark:border-border/40 shadow-sm absolute left-1/2 -translate-x-1/2 transition-colors`}
+            className={`${forceMobile ? "hidden" : "hidden lg:flex"} items-center space-x-2 glass p-2 rounded-full shadow-soft absolute left-1/2 -translate-x-1/2 transition-all`}
           >
             {navItems.map((item) => (
               <Button
@@ -149,8 +160,8 @@ const Navigation = () => {
                 }}
                 className={`transition-all duration-200 rounded-full ${
                   activeLink === item.name
-                    ? "shadow-md"
-                    : "text-muted-foreground"
+                    ? "bg-gradient-primary text-white shadow-accent"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.name}
@@ -183,7 +194,7 @@ const Navigation = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           id="mobile-nav"
-          className={`${forceMobile ? "" : "lg:hidden"} absolute top-full left-0 right-0 bg-background/95 dark:bg-background/90 backdrop-blur-sm shadow-lg border-t border-border/60 transition-colors`}
+          className={`${forceMobile ? "" : "lg:hidden"} absolute top-full left-0 right-0 glass-strong shadow-large border-t border-border/20 transition-all`}
         >
           <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex flex-col space-y-1 sm:space-y-2">
             {navItems.map((item) => (

@@ -1,11 +1,14 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { TrendingUp, Shield, Calculator, PieChart, Users, Award, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useHighZoom } from "@/hooks/use-high-zoom";
+import { useRef } from "react";
 
 const Services = () => {
   const isHighZoom = useHighZoom();
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   const services = [
     {
@@ -68,24 +71,27 @@ const Services = () => {
 
   return (
     <section
+      ref={sectionRef}
       id="services"
-      className={`bg-muted/40 dark:bg-background transition-colors ${isHighZoom ? "py-12 sm:py-16 md:py-20" : "py-16 sm:py-20 md:py-24"}`}
+      className={`relative overflow-hidden ${isHighZoom ? "py-12 sm:py-16 md:py-20" : "py-16 sm:py-20 md:py-24"}`}
+      style={{
+        background: "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 50%, hsl(var(--background)) 100%)",
+      }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
           className="text-center mb-10 sm:mb-12 md:mb-16"
         >
           <h2
             className={`${
               isHighZoom ? "text-2xl sm:text-3xl md:text-4xl" : "text-3xl sm:text-4xl md:text-5xl"
-            } font-bold mb-3 sm:mb-4 text-foreground px-2`}
+            } font-display font-bold mb-3 sm:mb-4 text-foreground px-2`}
           >
-            Our Services
+            Our <span className="bg-gradient-primary bg-clip-text text-transparent">Services</span>
           </h2>
           <p
             className={`${
@@ -109,16 +115,16 @@ const Services = () => {
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.2, duration: 0.7 }}
+              whileHover={{ y: -8, scale: 1.02 }}
             >
-              <Card className="h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Card className="h-full glass hover:glass-strong shadow-soft hover:shadow-accent transition-all duration-300 border-0">
                 <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 pb-3 sm:pb-4">
-                  <div className="bg-primary text-primary-foreground w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center flex-shrink-0">
-                    <service.icon className={isHighZoom ? "h-5 w-5 sm:h-6 sm:w-6" : "h-6 w-6 sm:h-7 sm:w-7"} />
+                  <div className="bg-gradient-primary w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-accent">
+                    <service.icon className={`${isHighZoom ? "h-5 w-5 sm:h-6 sm:w-6" : "h-6 w-6 sm:h-7 sm:w-7"} text-white`} />
                   </div>
-                  <CardTitle className={`${isHighZoom ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"} font-bold text-foreground`}>
+                  <CardTitle className={`${isHighZoom ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"} font-display font-bold text-foreground`}>
                     {service.title}
                   </CardTitle>
                 </CardHeader>
@@ -148,16 +154,16 @@ const Services = () => {
         </div>
 
         {/* Why Choose Us */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ staggerChildren: 0.2 }}
-        >
-          <div className="text-center mb-8 sm:mb-10 md:mb-12 px-2">
-            <h3 className={`${isHighZoom ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} font-bold text-foreground mb-2 sm:mb-3`}>
-              Why Choose Us?
-            </h3>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ staggerChildren: 0.2 }}
+          >
+            <div className="text-center mb-8 sm:mb-10 md:mb-12 px-2">
+              <h3 className={`${isHighZoom ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} font-display font-bold text-foreground mb-2 sm:mb-3`}>
+                Why <span className="bg-gradient-primary bg-clip-text text-transparent">Choose Us?</span>
+              </h3>
             <p className={`${isHighZoom ? "text-sm sm:text-base" : "text-base sm:text-lg"} text-muted-foreground max-w-2xl mx-auto`}>
               Our commitment to excellence, regulatory compliance, and a client-first approach makes us 
               the trusted choice for your financial journey.
@@ -178,12 +184,13 @@ const Services = () => {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                className={`bg-card text-card-foreground rounded-lg shadow-md text-center ${
+                whileHover={{ y: -5, scale: 1.05 }}
+                className={`glass hover:glass-strong rounded-lg shadow-soft hover:shadow-accent text-center transition-all duration-300 ${
                   isHighZoom ? "p-4 sm:p-5" : "p-5 sm:p-6"
                 }`}
               >
-                <div className="bg-primary/15 text-primary w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                  <item.icon className={isHighZoom ? "h-5 w-5 sm:h-6 sm:w-6" : "h-6 w-6 sm:h-8 sm:w-8"} />
+                <div className="bg-gradient-primary w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-accent">
+                  <item.icon className={`${isHighZoom ? "h-5 w-5 sm:h-6 sm:w-6" : "h-6 w-6 sm:h-8 sm:w-8"} text-white`} />
                 </div>
                 <h4 className={`${isHighZoom ? "text-sm sm:text-base" : "text-base sm:text-lg"} font-semibold text-foreground mb-2`}>
                   {item.title}
@@ -202,11 +209,11 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7 }}
-          className={`text-center bg-gradient-to-r from-primary to-blue-600 rounded-xl sm:rounded-2xl text-white shadow-xl ${
+          className={`text-center bg-gradient-primary rounded-xl sm:rounded-2xl text-white shadow-accent ${
             isHighZoom ? "mt-12 sm:mt-16 p-6 sm:p-8" : "mt-14 sm:mt-20 p-8 sm:p-10"
           }`}
         >
-          <h3 className={`${isHighZoom ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} font-bold mb-3 sm:mb-4 px-2`}>
+          <h3 className={`${isHighZoom ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"} font-display font-bold mb-3 sm:mb-4 px-2`}>
             Ready to Start Your Investment Journey?
           </h3>
           <p className={`${isHighZoom ? "text-sm sm:text-base" : "text-base sm:text-lg"} mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto px-2`}>
